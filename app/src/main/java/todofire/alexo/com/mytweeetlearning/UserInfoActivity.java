@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 public class UserInfoActivity extends AppCompatActivity {
+
     private ImageView userImageView;
 
     @Override

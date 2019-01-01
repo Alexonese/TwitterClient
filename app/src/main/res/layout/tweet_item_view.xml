@@ -9,20 +9,21 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="@dimen/text_small_margin"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher"
+         />
 
     <TextView
         android:id="@+id/author_name_text_view"
         style="@style/TextView.Primary.Bold"
         android:layout_toEndOf="@+id/profile_image_view"
-        android:text="Alexonese"/>
+        android:text="Alexonese" />
 
     <TextView
         android:id="@+id/author_nick_text_view"
         style="@style/TextView.Secondary"
         android:layout_marginStart="@dimen/text_small_margin"
         android:layout_toEndOf="@+id/author_name_text_view"
-        android:text="alexonese"/>
+        android:text="alexonese" />
 
     <TextView
         android:id="@+id/creation_data_text_view"
@@ -31,7 +32,7 @@
         android:layout_toEndOf="@+id/author_nick_text_view"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="dec.30"/>
+        android:text="dec.30" />
 
 
     <TextView
@@ -40,7 +41,7 @@
         android:layout_below="@+id/author_name_text_view"
         android:layout_marginStart="@dimen/text_small_margin"
         android:layout_toEndOf="@+id/profile_image_view"
-        android:text="Что-то о чём то, наверное о том что я ленив, хех. Эх. "/>
+        android:text="Что-то о чём то, наверное о том что я ленив, хех. Эх. " />
 
 
     <ImageView
@@ -48,38 +49,57 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_below="@+id/tweet_content_text_view"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_toEndOf="@id/profile_image_view"
         android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tweet_image_view"
+        android:layout_toEndOf="@+id/profile_image_view"
+        android:orientation="horizontal">
+
+        <LinearLayout
+        android:id="@+id/retweets_container"
+            style="@style/HalfWidth"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextIcon"
+            android:text="@string/fa_retweet"/>
+
+        <TextView
+            android:id="@+id/retweets_text_view"
+            style="@style/TextView.Secondary"
+            android:layout_marginStart="@dimen/text_small_margin"
+            android:text="16"/>
+
+    </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tweet_image_view"
-            android:layout_toEndOf="@+id/profile_image_view"
+            android:id="@+id/like_container"
+            style="@style/HalfWidth"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/retweets_container"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tweet_image_view"
-                android:layout_toEndOf="@+id/profile_image_view"
-                android:orientation="horizontal"
-            >
+            <TextView
+                style="@style/TextIcon"
+                android:text="@string/fa_heart_o"/>
 
-
-
-
-
-            </LinearLayout>
-
-
+            <TextView
+                android:id="@+id/likes_text_view"
+                style="@style/TextView.Secondary"
+                android:layout_marginStart="@dimen/text_small_margin"
+                android:text="16"/>
 
         </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>
