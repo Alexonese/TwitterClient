@@ -15,4 +15,6 @@
     <string name="fa_heart_o" translatable="false">\uf08a</string>
     <string name="fa_retweet" translatable="false">\uf079</string>
 
+    <string name="ion_search" translatable="false"></string>
+
 </resources>
