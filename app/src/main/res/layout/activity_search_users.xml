@@ -27,7 +27,7 @@
                 android:inputType="text"
                 android:hint="@string/search_query_hint"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/transparent_gfx"
                 android:fontFamily="@font/ionicons"
-                android:text="@string/ion_search"
+                android:src="@drawable/baseline_search_white_24"
                 android:textColor="@color/white"
                 android:textSize="23sp"/>
 

@@ -6,6 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,14 +28,54 @@ public class SearchUsersActivity extends AppCompatActivity {
     private RecyclerView usersRecyclerView;
     private UsersAdapter usersAdapter;
 
+    private Toolbar toolbar;
+    private EditText queryEditText;
+    private ImageButton searchButton;
+
+
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_search_users);
+        setContentView(R.layout.activity_search_users);
         initRecyclerView();
-        searchUsers();
+
+        toolbar = findViewById(R.id.toolbar);
+        queryEditText = toolbar.findViewById(R.id.query_edit_text);
+        searchButton = toolbar.findViewById(R.id.search_button);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchUsers();
+            }
+        });
+
+        queryEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    searchUsers();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -49,6 +98,7 @@ public class SearchUsersActivity extends AppCompatActivity {
 
     private void searchUsers() {
         Collection<User> users = getUsers();
+        usersAdapter.clearItems();
         usersAdapter.setItems(users);
     }
     private Collection<User> getUsers() {
