@@ -1,4 +1,4 @@
-<resources xmlns:android="http://schemas.android.com/tools">
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name">MyTweeetLearning</string>
 
     <string name="following">Following</string>
@@ -17,7 +17,7 @@
 
     <string name="ion_search" android:ignore="MissingTranslation"></string>
 
-    <string name="com.twitter.sdk.android.CONSUMER_KEY" >bKn0h1hdmcQpdlTAi8vLrm2R1 </string>
-    <string name="com.twitter.sdk.android.CONSUMER_SECRET" >nn1xcL87R3wrvJ0ARg2GgIAaGKCUbyt2XtNdN2KtkY14aTLwj1 </string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY" >bKn0h1hdmcQpdlTAi8vLrm2R1</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET" >nn1xcL87R3wrvJ0ARg2GgIAaGKCUbyt2XtNdN2KtkY14aTLwj1</string>
 
 </resources>

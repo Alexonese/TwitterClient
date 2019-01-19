@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -14,11 +15,13 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
 import todofire.alexo.com.mytweeetlearning.R;
 import todofire.alexo.com.mytweeetlearning.adapter.TweetAdapter;
+import todofire.alexo.com.mytweeetlearning.network.HttpClient;
 import todofire.alexo.com.mytweeetlearning.pojo.Tweet;
 import todofire.alexo.com.mytweeetlearning.pojo.User;
 
@@ -41,6 +44,8 @@ public class UserInfoActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
 
+    private HttpClient httpClient;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.user_info_menu, menu);
@@ -61,7 +66,6 @@ public class UserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_info);
 
         long userId = getIntent().getLongExtra(USER_ID, -1);
-        Toast.makeText(this, "UserId = " + userId, Toast.LENGTH_SHORT).show();
 
 
         userImageView = findViewById(R.id.user_image_view);
@@ -77,7 +81,9 @@ public class UserInfoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        loadUserInfo();
+        httpClient = new HttpClient();
+
+        loadUserInfo(userId);
         initRecyclerView();
         loadTweets();
     }
@@ -130,10 +136,19 @@ public class UserInfoActivity extends AppCompatActivity {
 
     }
 
-    private void loadUserInfo(){
-
-        User user = getUser();
-        displayUserInfo(user);
+    private void loadUserInfo(final long userId){
+    Runnable readUserRunnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                String userInfo = httpClient.readUserInfo(userId);
+                Log.d("HttpTest", userInfo);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+        new Thread(readUserRunnable).start();
     }
 
 

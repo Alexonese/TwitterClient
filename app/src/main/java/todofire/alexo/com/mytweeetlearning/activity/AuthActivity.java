@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -14,6 +15,7 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import todofire.alexo.com.mytweeetlearning.R;
 
 public class AuthActivity extends AppCompatActivity {
+
     private TwitterLoginButton twitterLoginButton;
 
     @Override
@@ -32,6 +34,9 @@ public class AuthActivity extends AppCompatActivity {
 
             @Override
             public void failure(TwitterException exception) {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Пора покормить кота!", Toast.LENGTH_SHORT);
+                toast.show();
 
             }
         });
